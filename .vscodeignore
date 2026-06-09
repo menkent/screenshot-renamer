@@ -1,0 +1,15 @@
+.vscode/**
+.claude/**
+abc/**
+src/**
+node_modules/**
+docs-agents/**
+abc/**
+.github/**
+out/**
+**/*.ts
+**/*.map
+esbuild.js
+tsconfig.json
+.gitignore
+.git/**

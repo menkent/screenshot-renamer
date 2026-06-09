@@ -1,0 +1,52 @@
+{
+  "name": "screenshot-renamer",
+  "displayName": "Screenshot Renamer",
+  "publisher": "local",
+  "description": "Переименовывает вставленные из буфера картинки (image.png) в YYYY-MM-DD-NN.png внутри наблюдаемой папки. Работает в remote-воркспейсах.",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "license": "MIT",
+  "main": "./dist/extension.js",
+  "extensionKind": [
+    "workspace"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "Screenshot Renamer",
+      "properties": {
+        "screenshotRenamer.watchedFolder": {
+          "type": "string",
+          "default": "docs-agents/screens",
+          "markdownDescription": "Папка относительно корня воркспейса, внутри которой (и в её подпапках) вставленные `image.png` переименовываются в `YYYY-MM-DD-NN.png`. Пусто = выключено."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "package": "node esbuild.js --production",
+    "check-types": "tsc --noEmit",
+    "bump:patch": "npm version patch --no-git-tag-version",
+    "bump:minor": "npm version minor --no-git-tag-version",
+    "vsix": "vsce package --allow-missing-repository -o screenshot-renamer.vsix",
+    "deploy": "npm run vsix && code --install-extension screenshot-renamer.vsix --force",
+    "release": "npm version patch && git push --follow-tags"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.9.1",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.4.0"
+  }
+}
